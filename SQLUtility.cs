@@ -24,6 +24,11 @@ namespace CPUFramework
             return dt;
         }
 
+        public static void ExecuteSQL(string sqlstatment)
+        {
+            GetDataTable(sqlstatment);
+        }
+
         private static void SetAllColumnsAllowNull(DataTable dt)
         {
             foreach(DataColumn c in dt.Columns)
