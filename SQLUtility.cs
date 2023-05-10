@@ -25,6 +25,11 @@ namespace CPUFramework
 
         public static DataTable GetDataTable(SqlCommand cmd)
         {
+            return DoExecuteSql(cmd);
+        }
+
+        private static DataTable DoExecuteSql(SqlCommand cmd)
+        {
             DataTable dt = new();
             using (SqlConnection conn = new SqlConnection(SQLUtility.ConnectionString))
             {
@@ -48,9 +53,13 @@ namespace CPUFramework
 
         public static DataTable GetDataTable(string sqlstatement)
         {
-            return GetDataTable(new SqlCommand(sqlstatement));
+            return DoExecuteSql(new SqlCommand(sqlstatement));
         }
 
+        public static void ExecuteSQL(SqlCommand cmd)
+        {
+            DoExecuteSql(cmd);
+        }
 
         public static void ExecuteSQL(string sqlstatment)
         {
