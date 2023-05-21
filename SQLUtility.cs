@@ -91,6 +91,32 @@ namespace CPUFramework
             }
         }
 
+        public static void SaveDataRow(DataRow row, string sprocname)
+        {
+            SqlCommand cmd = GetSqlCommand(sprocname);
+            foreach(DataColumn col in row.Table.Columns)
+            {
+                string paramname = $"@{col.ColumnName}";
+                if (cmd.Parameters.Contains(paramname))
+                {
+                    cmd.Parameters[paramname].Value = row[col.ColumnName];
+                }
+            }
+            DoExecuteSql(cmd, false);
+
+            foreach(SqlParameter p in cmd.Parameters)
+            {
+                if(p.Direction == ParameterDirection.InputOutput)
+                {
+                    string colname = p.ParameterName.Substring(1);
+                    if (row.Table.Columns.Contains(colname))
+                    {
+                        row[colname] = p.Value;
+                    }
+                }
+            }
+        }
+
         public static DataTable GetDataTable(string sqlstatement)
         {
             return DoExecuteSql(new SqlCommand(sqlstatement), true);
