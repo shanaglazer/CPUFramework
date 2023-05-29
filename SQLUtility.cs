@@ -103,7 +103,7 @@ namespace CPUFramework
                 }
             }
             DoExecuteSql(cmd, false);
-
+           
             foreach(SqlParameter p in cmd.Parameters)
             {
                 if(p.Direction == ParameterDirection.InputOutput)
@@ -115,6 +115,7 @@ namespace CPUFramework
                     }
                 }
             }
+            row.Table.AcceptChanges();
         }
 
         public static DataTable GetDataTable(string sqlstatement)
