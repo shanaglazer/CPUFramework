@@ -146,6 +146,7 @@ namespace CPUFramework
 
         public static string ParseConstraintMsg(string msg)
         {
+            string notnullprefix = "Cannot insert the value NULL into column '";
             string origmsg = msg;
             string prefix = "ck_";
             string msgend = "";
@@ -159,6 +160,11 @@ namespace CPUFramework
                 else if (msg.Contains("f_"))
                 {
                     prefix = "f_";
+                }
+                else if (msg.Contains(notnullprefix))
+                {
+                    prefix = notnullprefix;
+                    msgend = " cannoot be blank.";
                 }
             }
 
@@ -242,6 +248,15 @@ namespace CPUFramework
             return value;
         }
 
+        public static bool TableHaveChanges(DataTable dt)
+        {
+            bool b = false;
+            if(dt.GetChanges() != null)
+            {
+                b = true;
+            }
+            return b;
+        }
 
         public static string GetSql(SqlCommand cmd)
         {
