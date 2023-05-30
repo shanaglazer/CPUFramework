@@ -76,7 +76,10 @@ namespace CPUFramework
                     }
                     else if (p.ParameterName.ToLower() == "@message")
                     {
-                        msg = p.Value.ToString();
+                        if (p.Value != null)
+                        {
+                            msg = p.Value.ToString();
+                        }
                     }
                 }
 
