@@ -112,7 +112,15 @@ namespace CPUFramework
                 string paramname = $"@{col.ColumnName}";
                 if (cmd.Parameters.Contains(paramname))
                 {
-                    cmd.Parameters[paramname].Value = row[col.ColumnName];
+                    if (paramname.Contains("Date"))
+                    {
+                        cmd.Parameters[paramname].Value = ((DateTime)row[col.ColumnName]).ToString("yyyy-MM-dd");
+                    }
+                    else
+                    {
+                        cmd.Parameters[paramname].Value = row[col.ColumnName];//rak ze hya baif haelion
+                    }
+                    
                 }
             }
             DoExecuteSql(cmd, false);
