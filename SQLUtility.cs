@@ -118,7 +118,7 @@ namespace CPUFramework
                     }
                     else
                     {
-                        cmd.Parameters[paramname].Value = row[col.ColumnName];//rak ze hya baif haelion
+                        cmd.Parameters[paramname].Value = row[col.ColumnName];
                     }
                     
                 }
