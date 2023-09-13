@@ -189,7 +189,7 @@ namespace CPUFramework
                 else if (msg.Contains(notnullprefix))
                 {
                     prefix = notnullprefix;
-                    msgend = " cannoot be blank.";
+                    msgend = " cannot be blank.";
                 }
             }
 
