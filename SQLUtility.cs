@@ -315,7 +315,7 @@ namespace CPUFramework
             StringBuilder sb = new();
             if (cmd.Connection != null)
             {
-                sb.AppendLine($"--{cmd.Connection.ConnectionString}");
+                //sb.AppendLine($"--{cmd.Connection.ConnectionString}");
                 sb.AppendLine($"--{cmd.Connection.DataSource}");
                 sb.AppendLine($"use {cmd.Connection.Database}");
                 sb.AppendLine("go");
