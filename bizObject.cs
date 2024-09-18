@@ -102,6 +102,7 @@ namespace CPUFramework
 
         public void Delete(DataTable datatable)
         {
+            this.ErrorMessage = "";//session 24
             int id = (int)datatable.Rows[0][_primarykeyname];
             this.Delete(id);
         }
@@ -115,6 +116,7 @@ namespace CPUFramework
 
         public void Save()
         {
+            this.ErrorMessage = "";//session 24
             SqlCommand cmd = SQLUtility.GetSqlCommand(_updatestsproc);
             foreach(SqlParameter param in cmd.Parameters)
             {
@@ -138,6 +140,7 @@ namespace CPUFramework
 
         public void Save(DataTable datatable)
         {
+            this.ErrorMessage = "";//session 24
             if (datatable.Rows.Count == 0)
             {
                 throw new Exception($"Cannot call {_tablename} Save method becuase there are no rows in the tabe.");
@@ -185,5 +188,7 @@ namespace CPUFramework
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
+
+        public string ErrorMessage { get; set; } = "";//session 24
     }
 }
